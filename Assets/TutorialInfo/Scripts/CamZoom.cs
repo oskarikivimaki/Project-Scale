@@ -8,11 +8,11 @@ public class CamZoom : MonoBehaviour
     private CinemachineFreeLook freelookCam;
     private CinemachineFreeLook.Orbit[] originalOrbits;
 
-    [Range(0.01f,0.5f)]
-    public float minZoom = 0.5f;
+    [Range(1.0f,2.0f)]
+    public float minZoom = 1.0f;
 
-    [Range(1f,5f)]
-    public float maxZoom = 1.0f;
+    [Range(2.0f,5.0f)]
+    public float maxZoom = 2.0f;
 
     [AxisStateProperty]
     public AxisState zAxis = new AxisState(0, 1, false, true, 50f, 0.1f, 0.1f, "Mouse ScrollWheel", false);

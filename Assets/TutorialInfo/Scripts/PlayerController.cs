@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
 
+    public bool isGrounded;
+
 
     void Start()
     {
@@ -24,9 +26,10 @@ public class PlayerController : MonoBehaviour
         vel.y = _rb.velocity.y;
         _rb.velocity = vel;
 
-        
-
-        if (Input.GetKeyDown(KeyCode.Space)) _rb.AddForce(Vector3.up * _jumpForce);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        {
+            _rb.AddForce(Vector3.up * _jumpForce);
+        }
     }
 
     private void OnApplicationFocus(bool focus)
@@ -39,5 +42,17 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    private void OnCollisionStay(UnityEngine.Collision collision)
+    {
+        if (collision.collider.CompareTag("isGround"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit(UnityEngine.Collision collision)
+    {
+        isGrounded = false;
     }
 }

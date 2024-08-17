@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - isGround
+  - checkWall
+  - isWall
+  - isPickable
+  - Plate
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -12,9 +18,9 @@ TagManager:
   - Water
   - UI
   - isGround
-  - 
-  - 
-  - 
+  - isPlayer
+  - isWall
+  - IsPickable
   - 
   - 
   - 
