@@ -554,7 +554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 998305778}
   player: {fileID: 1677870641}
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 1008332963}
   rb: {fileID: 1677870644}
   rotationSpeed: 7
 --- !u!1 &349736392
@@ -1873,6 +1873,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5960084364378190128}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1008332963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6065453616159943274, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5960084364378190128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172676971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,11 +2975,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObj
       objectReference: {fileID: 0}
+    - target: {fileID: 201814504675192848, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 81c0e42e2b0c37f46891240b0714c7dd, type: 2}
+    - target: {fileID: 201814504675192848, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065453616159943274, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.862
+      objectReference: {fileID: 0}
     - target: {fileID: 6364944374985243243, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
       propertyPath: _camerTransform
       value: 
       objectReference: {fileID: 330585546}
+    - target: {fileID: 6874464735331496144, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8460445089457287383, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3024,6 +3050,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8544102383306088088, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9aee4ae28dbc8a4c947cd845770c803, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
