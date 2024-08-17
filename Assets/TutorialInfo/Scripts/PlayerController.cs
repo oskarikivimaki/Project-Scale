@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,12 +10,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
+    private Animator _animator;
 
     public bool isGrounded;
 
 
     void Start()
     {
+        _animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -25,10 +28,16 @@ public class PlayerController : MonoBehaviour
         vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
         vel.y = _rb.velocity.y;
         _rb.velocity = vel;
+        WalkAnimation(vel.magnitude);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
         {
             _rb.AddForce(Vector3.up * _jumpForce);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            Punch();
         }
     }
 
@@ -54,5 +63,15 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit(UnityEngine.Collision collision)
     {
         isGrounded = false;
+    }
+
+    private void WalkAnimation(float vel)
+    {
+        _animator.SetFloat("Velocity", vel);
+    }
+
+    private void Punch()
+    {
+        _animator.SetTrigger("Punch");
     }
 }
