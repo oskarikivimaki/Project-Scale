@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.ProBuilder.Shapes;
 
-public class WeightPuzzle : MonoBehaviour
+public class MassPuzzle : MonoBehaviour
 {
     private GameObject plate;
     private GameObject player;

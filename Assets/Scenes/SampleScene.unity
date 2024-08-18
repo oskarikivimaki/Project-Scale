@@ -2851,10 +2851,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1109119741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b467466bb7404424f9e78d70195a9eff, type: 3}
+  m_Script: {fileID: 11500000, guid: e5294656023c0b247aaa97bc5d70cad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: {fileID: 228034825}
 --- !u!1001 &1167466831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2867,6 +2866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 61121995612859674, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 64126126722568836, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
@@ -2927,6 +2931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -28.116253
+      objectReference: {fileID: 0}
+    - target: {fileID: 659502146126426176, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 691878993083603010, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
@@ -3351,7 +3360,7 @@ PrefabInstance:
     - target: {fileID: 6874464735331496144, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6938304521625384330, guid: 3b422d9d78f25ef48a7a56a5f29875f6,
         type: 3}
