@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class PlayerScaling : MonoBehaviour
 {
     private GameObject player;
+    public Transform sphereCheck;
     private Vector3 playerNormal;
     private Vector3 playerSmall;
 
@@ -18,7 +19,7 @@ public class PlayerScaling : MonoBehaviour
     {
         player = this.gameObject;
         playerNormal = new Vector3(1f, 1f, 1f);
-        playerSmall = new Vector3(0.5f, 0.5f, 0.5f);
+        playerSmall = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class PlayerScaling : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerSmall)
         {
             
-            Collider[] contacts = Physics.OverlapSphere(player.transform.position, player.transform.localScale.magnitude - radius, LayerMask.GetMask("isWall"));
+            Collider[] contacts = Physics.OverlapSphere(sphereCheck.position, player.transform.localScale.magnitude - radius, LayerMask.GetMask("isGround"));
             print(player.transform.localScale.magnitude);
             if (contacts.Length == 0)
             {
@@ -46,6 +47,6 @@ public class PlayerScaling : MonoBehaviour
     {
         Gizmos.color = Color.green;
         //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(player.transform.position, player.transform.localScale.magnitude - radius);
+        Gizmos.DrawWireSphere(sphereCheck.position, player.transform.localScale.magnitude - radius);
     }
 }
