@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
     [SerializeField] private Transform _groundCheck;
+
+    public string[] items = new string[5];
+    private int nextItemSlot = 0;
     public float checkRadius;
     public LayerMask isGround;
     private Animator _animator;
@@ -105,6 +108,14 @@ public class PlayerController : MonoBehaviour
             _jumpForce = _jumpForceBIG;
         }
     }
+
+    public void PickItem(string pickedItem)
+    {
+        items[nextItemSlot] = pickedItem;
+        nextItemSlot++;
+    }
+
+    
 
     private void OnDrawGizmos()
     {

@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Squish
+    m_ConditionEvent: Interact
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3973049854137010258}
@@ -59,7 +59,7 @@ AnimatorController:
   m_Name: Boxtop
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Squish
+  - m_Name: Interact
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

@@ -14,6 +14,7 @@ TagManager:
   - Door1
   - PushingKey
   - Button
+  - Toolbox
   layers:
   - Default
   - TransparentFX
