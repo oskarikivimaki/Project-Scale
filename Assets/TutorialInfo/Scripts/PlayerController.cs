@@ -5,8 +5,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _speed = 10;
-    [SerializeField] private float _jumpForce = 500;
+
+    [SerializeField] private float _speed;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpForceBIG = 500;
+    [SerializeField] private float _jumpForceTINY = 500;
+    [SerializeField] private float _speedBIG = 500;
+    [SerializeField] private float _speedTINY = 500;
+
+
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
@@ -18,9 +25,12 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
 
 
+
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        _speed = _speedBIG;
+        _jumpForce = _jumpForceBIG;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -79,5 +89,27 @@ public class PlayerController : MonoBehaviour
     private void Punch()
     {
         _animator.SetTrigger("Punch");
+    }
+
+    public void ChangeRunAndJump(bool isTiny)
+    {
+        
+        if (isTiny)
+        {
+            _speed = _speedTINY;
+            _jumpForce = _jumpForceTINY;
+        }
+        if (!isTiny)
+        {
+            _speed = _speedBIG;
+            _jumpForce = _jumpForceBIG;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+        Gizmos.DrawWireSphere(_groundCheck.position, checkRadius);
     }
 }

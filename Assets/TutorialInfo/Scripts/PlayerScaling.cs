@@ -5,11 +5,12 @@ using UnityEngine.UIElements;
 
 public class PlayerScaling : MonoBehaviour
 {
+    PlayerController controller;
     private GameObject player;
     public Transform sphereCheck;
     private Vector3 playerNormal;
     private Vector3 playerSmall;
-
+    bool isTiny = false;
     [SerializeField]
     [Range(0f, 1f)]
     private float radius;
@@ -17,6 +18,7 @@ public class PlayerScaling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<PlayerController>();
         player = this.gameObject;
         playerNormal = new Vector3(1f, 1f, 1f);
         playerSmall = new Vector3(0.2f, 0.2f, 0.2f);
@@ -34,13 +36,16 @@ public class PlayerScaling : MonoBehaviour
             {
                 player.transform.localScale = playerNormal;
                 print(player.transform.localScale);
+                isTiny = false;
             }
             
         }
         else if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerNormal)
         {
             player.transform.localScale = playerSmall;
+            isTiny = true;
         }
+        controller.ChangeRunAndJump(isTiny);
     }
 
     private void OnDrawGizmos()
