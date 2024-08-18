@@ -10,6 +10,10 @@ TagManager:
   - isPickable
   - Plate
   - Key
+  - Door0
+  - Door1
+  - PushingKey
+  - Button
   layers:
   - Default
   - TransparentFX
