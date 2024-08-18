@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
+    [SerializeField] private Transform _groundCheck;
+    public float checkRadius;
+    public LayerMask isGround;
     private Animator _animator;
 
     public bool isGrounded;
@@ -24,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        isGrounded = Physics.CheckSphere(_groundCheck.position, checkRadius, isGround);
+
         var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
         vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
         vel.y = _rb.velocity.y;
@@ -53,17 +58,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(UnityEngine.Collision collision)
-    {
-        if (collision.collider.CompareTag("isGround"))
-        {
-            isGrounded = true;
-        }
-    }
-    private void OnCollisionExit(UnityEngine.Collision collision)
-    {
-        isGrounded = false;
-    }
+    //private void OnCollisionStay(UnityEngine.Collision collision)
+    //{
+    //    if (collision.collider.CompareTag("isGround"))
+    //    {
+    //        isGrounded = true;
+    //    }
+    //}
+
+    //private void OnCollisionExit(UnityEngine.Collision collision)
+    //{
+    //    isGrounded = false;
+    //}
 
     private void WalkAnimation(float vel)
     {
