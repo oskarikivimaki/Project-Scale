@@ -13,12 +13,17 @@ public class Puzzle2 : MonoBehaviour
 
     MeshRenderer meshRenderer;
 
+    PlateManager manager;
+
+    public int key;
+
 
     private void Start()
     {
         meshRenderer = plate.GetComponent<MeshRenderer>();
         red = meshRenderer.material;
         green.mainTextureScale = red.mainTextureScale;
+        manager = GetComponentInParent<PlateManager>();
     }
 
 
@@ -29,7 +34,13 @@ public class Puzzle2 : MonoBehaviour
         {
             print("JEEEE TOIMII");
             meshRenderer.material = meshRenderer.material.name.StartsWith(green.name) ? red : green;
+            manager.Activated(key);
         }
+    }
+
+    public void Deactivate()
+    {
+        meshRenderer.material = red;
     }
 
 }
