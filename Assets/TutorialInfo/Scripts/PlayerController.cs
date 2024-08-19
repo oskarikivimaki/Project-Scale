@@ -45,7 +45,17 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
+    {
+        float vel = _rb.velocity.magnitude;
+        WalkAnimation(vel);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Punch();
+        }
+    }
+
+    void FixedUpdate()
     {
         if (alive)
         {
@@ -55,19 +65,17 @@ public class PlayerController : MonoBehaviour
             vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
             vel.y = _rb.velocity.y;
             _rb.velocity = vel;
-            WalkAnimation(vel.magnitude);
+            
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+            if (Input.GetKey(KeyCode.Space) && isGrounded == true)
             {
                 _rb.AddForce(Vector3.up * _jumpForce);
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                Punch();
-            }
+            
         }
     }
+
 
     private void OnApplicationFocus(bool focus)
     {
