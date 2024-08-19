@@ -15,6 +15,9 @@ TagManager:
   - PushingKey
   - Button
   - Toolbox
+  - red
+  - blue
+  - yellow
   layers:
   - Default
   - TransparentFX

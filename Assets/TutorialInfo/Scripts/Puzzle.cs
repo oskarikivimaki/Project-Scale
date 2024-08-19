@@ -5,17 +5,25 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     [SerializeField]
-    private GameObject door;
-    public string doorTag;
+    private PipesManager _mang;
+    private bool ballIn = true;
+    public string color;
+
+    private void Start()
+    {
+        _mang = GetComponentInParent<PipesManager>();    
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Key")
+        if (other.transform.tag == color)
         {
-            door = GameObject.FindGameObjectWithTag(doorTag);
-            door.GetComponent<Animator>().SetBool("Open", true);
-            print("JEEEE TOIMII");
-            
+            _mang.BallIn(color);
+        }
+        else
+        {
+            print("Wrong colored ball");
+            Destroy(other.gameObject);
         }
     }
 
