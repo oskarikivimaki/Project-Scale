@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _camerTransform;
     [SerializeField] private Transform _cameraMovement;
     [SerializeField] private Transform _groundCheck;
+    private Vector3 checkpoint;
 
     public string[] items = new string[5];
     private int nextItemSlot = 0;
@@ -102,6 +103,14 @@ public class PlayerController : MonoBehaviour
     //    isGrounded = false;
     //}
 
+    public void Respawn()
+    {
+        transform.position = checkpoint;
+    }
+    public void AddCheckpoint(Vector3 _checkpoint)
+    {
+        checkpoint = _checkpoint;
+    }
     private void WalkAnimation(float vel)
     {
         _animator.SetFloat("Velocity", vel);
