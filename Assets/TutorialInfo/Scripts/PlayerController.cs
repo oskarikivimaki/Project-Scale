@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
     public void Death()
     {
         _rb.isKinematic = true;
+        _animator.SetTrigger("Death");
     }
     
 
