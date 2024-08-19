@@ -20,9 +20,19 @@ public class SphereSpawnButton : MonoBehaviour
 
     private void Spawn()
     {
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(balls[index], spawn.position, spawn.localRotation);
+            if (GameObject.FindGameObjectWithTag(balls[index].tag))
+            {
+                Destroy(GameObject.FindGameObjectWithTag(balls[index].tag));
+                Instantiate(balls[index], spawn.position, spawn.localRotation);
+            }
+            else
+            {
+                Instantiate(balls[index], spawn.position, spawn.localRotation);
+            }
+            
         }
     }
 
