@@ -27,10 +27,17 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded;
 
+    [SerializeField]
+    private float health;
+    [SerializeField]
+    public bool alive;
+
 
 
     void Start()
     {
+        health = 100;
+        alive = true;
         _animator = GetComponentInChildren<Animator>();
         _speed = _speedBIG;
         _jumpForce = _jumpForceBIG;
@@ -40,22 +47,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(_groundCheck.position, checkRadius, isGround);
-
-        var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
-        vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
-        vel.y = _rb.velocity.y;
-        _rb.velocity = vel;
-        WalkAnimation(vel.magnitude);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if (alive)
         {
-            _rb.AddForce(Vector3.up * _jumpForce);
-        }
+            isGrounded = Physics.CheckSphere(_groundCheck.position, checkRadius, isGround);
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            Punch();
+            var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
+            vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
+            vel.y = _rb.velocity.y;
+            _rb.velocity = vel;
+            WalkAnimation(vel.magnitude);
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+            {
+                _rb.AddForce(Vector3.up * _jumpForce);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Punch();
+            }
         }
     }
 
@@ -115,12 +125,25 @@ public class PlayerController : MonoBehaviour
         nextItemSlot++;
     }
 
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        _rb.isKinematic = true;
+    }
     
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(_groundCheck.position, checkRadius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+    //    Gizmos.DrawWireSphere(_groundCheck.position, checkRadius);
+    //}
 }
