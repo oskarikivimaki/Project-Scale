@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
 
     [SerializeField]
-    private float health;
+    public float health;
     [SerializeField]
     public bool alive;
 
@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            alive = false;
             Death();
         }
     }
