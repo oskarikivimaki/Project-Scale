@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ObjectInteract : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ObjectInteract : MonoBehaviour
     [SerializeField] private Animator objAnim;
     [SerializeField] string _tag;
     [SerializeField] private bool noChildren;
+    [SerializeField] private bool hasDirector;
+    [SerializeField] private PlayableDirector dir;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,19 +31,33 @@ public class ObjectInteract : MonoBehaviour
     {
         if(other.transform.tag == _tag)
         {
-            if (!noChildren)
+            if (!hasDirector)
             {
-                print("THONG!!!");
-                foreach (Transform t in children)
+
+                if (!noChildren)
                 {
-                    Animator an = t.GetComponent<Animator>();
-                    an.SetBool("Interact", true);
+                    print("THONG!!!");
+                    foreach (Transform t in children)
+                    {
+                        Animator an = t.GetComponent<Animator>();
+                        an.SetBool("Interact", true);
+                    }
+                }
+                if (noChildren)
+                {
+                    objAnim.SetBool("Interact", true);
                 }
             }
-            if(noChildren)
+            if (hasDirector)
             {
-                objAnim.SetBool("Interact", true);
+                dir.Play();
             }
         }
+    }
+
+    public void PlayAnimation(Animator anim)
+    {
+        anim.SetBool("Interact", true);
+            
     }
 }

@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     //}
 
     public void EnablePlay() { canPlay = true; }
-    public void DisablePlay() { canPlay = false; }
+    public void DisablePlay() { canPlay = false; _rb.velocity = new Vector3(0, 0, 0); _animator.SetFloat("Velocity", 0); }
 
     public void Respawn()
     {

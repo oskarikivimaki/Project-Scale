@@ -13,6 +13,8 @@ public class MassPuzzle : MonoBehaviour
     private float holdingMass;
     [SerializeField] private bool OneObject;
 
+    [SerializeField] bool StartsDirector = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +32,15 @@ public class MassPuzzle : MonoBehaviour
         }
         if (OneObject && holdingMass == actMass)
         {
-            Animator _anim = ActionObject.GetComponent<Animator>();
-            ActivateAnim(_anim);
+            if(StartsDirector)
+            {
+                if(GetComponent<PlayCutscene>() != null)
+                {
+                    PlayCutscene playCut = GetComponent<PlayCutscene>();
+                    playCut.ActivateDirector();
+                }
+            }
+            
         }
     }
 
@@ -45,7 +54,7 @@ public class MassPuzzle : MonoBehaviour
         }
     }
 
-    private void ActivateAnim(Animator anim)
+    public void ActivateAnim(Animator anim)
     {
         anim.SetBool("Activate", true);
         print("Activate lifter");

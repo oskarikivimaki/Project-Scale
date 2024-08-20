@@ -1,27 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Interact : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] string itemToUse;
     private Animator animator;
+    [SerializeField] private bool hasDirector;
+    [SerializeField] private PlayableDirector dir;
+    private bool opened;
 
 
     void Start()
     {
         animator = GetComponentInParent<Animator>();
+        opened = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.transform.tag == "Player" && Input.GetKey(KeyCode.E))
+        if (other.transform.tag == "Player" && Input.GetKey(KeyCode.E) && !opened)
         {
+            opened = true;
             string[] playerItems = other.GetComponent<PlayerController>().items;
             if (CheckItems(playerItems))
             {
-                animator.SetBool("Interact", true);
+                if(!hasDirector)
+                {
+                    animator.SetBool("Interact", true);
+                }
+                else
+                {
+                    dir.Play();
+                }
+                
             }
             else
             {
@@ -50,5 +64,10 @@ public class Interact : MonoBehaviour
             
         }
         return hasItem;
+    }
+
+    public void PlayAnimation(Animator anim)
+    {
+        anim.SetBool("Interact", true);
     }
 }
