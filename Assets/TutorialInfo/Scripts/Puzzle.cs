@@ -5,12 +5,14 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     [SerializeField]
+    private Transform blank, correct, wrong;
     private PipesManager _mang;
     private bool ballIn = true;
     public string color;
 
     private void Start()
     {
+        blank = transform.set
         _mang = GetComponentInParent<PipesManager>();    
     }
 
@@ -24,6 +26,14 @@ public class Puzzle : MonoBehaviour
         {
             print("Wrong colored ball");
             Destroy(other.gameObject);
+        }
+    }
+
+    private void GiveFeedback(bool isCorrect)
+    {
+        if(isCorrect)
+        {
+
         }
     }
 
