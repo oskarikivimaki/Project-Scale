@@ -11,6 +11,11 @@ public class SphereSpawnButton : MonoBehaviour
     private bool canPress;
     public int index = 0;
 
+    private void Start()
+    {
+        canPress = true;
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "Player")
