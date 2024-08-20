@@ -48,10 +48,10 @@ public class PlayerScaling : MonoBehaviour
         controller.ChangeRunAndJump(isTiny);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(sphereCheck.position, player.transform.localScale.magnitude - radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+    //    Gizmos.DrawWireSphere(sphereCheck.position, player.transform.localScale.magnitude - radius);
+    //}
 }
