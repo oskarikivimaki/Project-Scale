@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AcidGood
+  m_Name: AcidGood 1
   m_Shader: {fileID: -6465566751694194690, guid: a8bc0f6bb780ac2489e5712802197a2c,
     type: 3}
   m_Parent: {fileID: 0}
@@ -113,21 +113,17 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _flowDensity: 4
+    - _flowDensity: 7
     - _flowSpeed: 0.5
-    - _flowThigness: 2
+    - _flowThigness: 5
     - _flowspeed: 0.2
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.0974991, g: 0.31132078, b: 0.083704166, a: 1}
+    - _Color: {r: 0.08612101, g: 0.26415092, b: 0.07600568, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flowdirection: {r: 0.1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-<<<<<<< Updated upstream
-    - _flowColor: {r: 0, g: 0.9068456, b: 0.0064847516, a: 0}
-=======
     - _flowColor: {r: 0.009149262, g: 0.27709177, b: 0.07087424, a: 0}
->>>>>>> Stashed changes
   m_BuildTextureStacks: []
 --- !u!114 &2306948330886814068
 MonoBehaviour:

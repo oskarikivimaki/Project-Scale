@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PipesManager : MonoBehaviour
 {
     private bool redIn, blueIn, yellowIn;
     [SerializeField] SphereSpawnButton spawnButton;
     [SerializeField] Animator acidAnim;
+    [SerializeField] PlayableDirector dir;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,12 @@ public class PipesManager : MonoBehaviour
 
         if (redIn && blueIn && yellowIn) {
             print("All balls in");
-            acidAnim.SetBool("Down", true);
+            dir.Play();
         }
+    }
+
+    public void PlayAnimation(Animator anim)
+    {
+        acidAnim.SetBool("Down", true);
     }
 }

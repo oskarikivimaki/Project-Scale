@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class FillAcid : MonoBehaviour
 {
     [SerializeField] Animator acid;
     Animator anim;
     bool playerIn;
+    [SerializeField] private PlayableDirector dir;
 
     private void Start()
     {
@@ -19,7 +21,7 @@ public class FillAcid : MonoBehaviour
         if (playerIn)
         {
             if(Input.GetKeyDown(KeyCode.E)) {
-                StartCoroutine(Fill());        
+                dir.Play();      
             }
         }
     }
@@ -44,12 +46,12 @@ public class FillAcid : MonoBehaviour
         }
     }
 
-    IEnumerator Fill()
+    public void SpinAnimation(Animator anim)
     {
         anim.SetBool("Turn", true);
-        yield return new WaitForSeconds(2);
-        acid.SetBool("Up", true);
-        yield return new WaitForSeconds(5);
-        acid.SetBool("Up2", true);
+    }
+    public void FillAnimation(string whatBool)
+    {
+        acid.SetBool(whatBool, true);
     }
 }

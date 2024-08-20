@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class Interact : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Interact : MonoBehaviour
     [SerializeField] private bool hasDirector;
     [SerializeField] private PlayableDirector dir;
     private bool opened;
+    [SerializeField] private bool isEnding;
 
 
     void Start()
@@ -30,6 +32,10 @@ public class Interact : MonoBehaviour
                 if(!hasDirector)
                 {
                     animator.SetBool("Interact", true);
+                    if (isEnding)
+                    {
+                        StartCoroutine(Ending());
+                    }
                 }
                 else
                 {
@@ -69,5 +75,11 @@ public class Interact : MonoBehaviour
     public void PlayAnimation(Animator anim)
     {
         anim.SetBool("Interact", true);
+    }
+
+    IEnumerator Ending()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(2);
     }
 }

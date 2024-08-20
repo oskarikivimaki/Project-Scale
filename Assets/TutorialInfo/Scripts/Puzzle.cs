@@ -5,14 +5,16 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     [SerializeField]
-    private Transform blank, correct, wrong;
+    private GameObject blank, correct, wrong;
     private PipesManager _mang;
     private bool ballIn = true;
     public string color;
 
     private void Start()
     {
-        blank = transform.set
+        blank.SetActive(true);
+        correct.SetActive(false);
+        wrong.SetActive(false);
         _mang = GetComponentInParent<PipesManager>();    
     }
 
@@ -21,11 +23,13 @@ public class Puzzle : MonoBehaviour
         if (other.transform.tag == color)
         {
             _mang.BallIn(color);
+            GiveFeedback(true);
         }
         else
         {
             print("Wrong colored ball");
             Destroy(other.gameObject);
+            GiveFeedback(false);
         }
     }
 
@@ -33,7 +37,15 @@ public class Puzzle : MonoBehaviour
     {
         if(isCorrect)
         {
-
+            blank.SetActive(false);
+            wrong.SetActive(false);
+            correct.SetActive(true);
+        }
+        if (!isCorrect)
+        {
+            blank.SetActive(false);
+            wrong.SetActive(true);
+            correct.SetActive(false);
         }
     }
 
