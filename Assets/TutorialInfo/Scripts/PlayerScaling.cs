@@ -11,7 +11,7 @@ public class PlayerScaling : MonoBehaviour
     private Vector3 playerNormal;
     private Vector3 playerSmall;
     bool isTiny = false;
-    bool canShrink;
+    [SerializeField] bool canShrink;
     [SerializeField]
     [Range(0f, 1f)]
     private float radius;
@@ -29,7 +29,8 @@ public class PlayerScaling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canShrink)
+
+        if (canShrink)
         {
             if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerSmall)
             {
@@ -44,13 +45,17 @@ public class PlayerScaling : MonoBehaviour
                 }
 
             }
+
+
+            else if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerNormal)
+            {
+                player.transform.localScale = playerSmall;
+                isTiny = true;
+            }
         }
 
-        else if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerNormal)
-        {
-            player.transform.localScale = playerSmall;
-            isTiny = true;
-        }
+        
+            
         controller.ChangeRunAndJump(isTiny);
     }
 
