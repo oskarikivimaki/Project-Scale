@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_design.unity
     guid: 6fd8c152ab832f4458cae1d8e1b3de90
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Credits.unity
+    guid: a28aa07b8826913469a3e503d776bb62
   m_configObjects: {}

@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        checkpoint = transform.position;
         health = 100;
         alive = true;
         canPlay = false;
