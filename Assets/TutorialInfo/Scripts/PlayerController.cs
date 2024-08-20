@@ -105,6 +105,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Disable_Shrink")
+        {
+
+        }
+    }
+
     //private void OnCollisionStay(UnityEngine.Collision collision)
     //{
     //    if (collision.collider.CompareTag("isGround"))

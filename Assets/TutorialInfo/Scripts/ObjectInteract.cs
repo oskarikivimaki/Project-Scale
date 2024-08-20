@@ -50,6 +50,7 @@ public class ObjectInteract : MonoBehaviour
             }
             if (hasDirector)
             {
+                _tag = "";
                 dir.Play();
             }
         }

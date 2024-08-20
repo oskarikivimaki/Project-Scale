@@ -11,6 +11,7 @@ public class PlayerScaling : MonoBehaviour
     private Vector3 playerNormal;
     private Vector3 playerSmall;
     bool isTiny = false;
+    bool canShrink;
     [SerializeField]
     [Range(0f, 1f)]
     private float radius;
@@ -18,6 +19,7 @@ public class PlayerScaling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canShrink = true;
         controller = GetComponent<PlayerController>();
         player = this.gameObject;
         playerNormal = new Vector3(1f, 1f, 1f);
@@ -27,25 +29,37 @@ public class PlayerScaling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerSmall)
+        if(canShrink)
         {
-            
-            Collider[] contacts = Physics.OverlapSphere(sphereCheck.position, player.transform.localScale.magnitude - radius, LayerMask.GetMask("isGround"));
-            print(player.transform.localScale.magnitude);
-            if (contacts.Length == 0)
+            if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerSmall)
             {
-                player.transform.localScale = playerNormal;
-                print(player.transform.localScale);
-                isTiny = false;
+
+                Collider[] contacts = Physics.OverlapSphere(sphereCheck.position, player.transform.localScale.magnitude - radius, LayerMask.GetMask("isGround"));
+                print(player.transform.localScale.magnitude);
+                if (contacts.Length == 0)
+                {
+                    player.transform.localScale = playerNormal;
+                    print(player.transform.localScale);
+                    isTiny = false;
+                }
+
             }
-            
         }
+
         else if (Input.GetKeyDown(KeyCode.Q) && player.transform.localScale == playerNormal)
         {
             player.transform.localScale = playerSmall;
             isTiny = true;
         }
         controller.ChangeRunAndJump(isTiny);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Disable_Shrink")
+        {
+            canShrink = false;
+        }
     }
 
     //private void OnDrawGizmos()

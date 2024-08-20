@@ -25,6 +25,10 @@ public class Puzzle : MonoBehaviour
             _mang.BallIn(color);
             GiveFeedback(true);
         }
+        if(other.transform.tag == "Player")
+        {
+            other.GetComponent<PlayerController>().Respawn();
+        }
         else
         {
             print("Wrong colored ball");

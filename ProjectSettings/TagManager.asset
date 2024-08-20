@@ -18,6 +18,7 @@ TagManager:
   - red
   - blue
   - yellow
+  - Disable_Shrink
   layers:
   - Default
   - TransparentFX
