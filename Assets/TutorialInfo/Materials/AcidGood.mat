@@ -123,11 +123,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flowdirection: {r: 0.1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-<<<<<<< Updated upstream
-    - _flowColor: {r: 0, g: 0.9068456, b: 0.0064847516, a: 0}
-=======
     - _flowColor: {r: 0.009149262, g: 0.27709177, b: 0.07087424, a: 0}
->>>>>>> Stashed changes
   m_BuildTextureStacks: []
 --- !u!114 &2306948330886814068
 MonoBehaviour:
