@@ -25,7 +25,7 @@ public class Puzzle : MonoBehaviour
             _mang.BallIn(color);
             GiveFeedback(true);
         }
-        if(other.transform.tag == "Player")
+        else if(other.transform.tag == "Player")
         {
             other.GetComponent<PlayerController>().Respawn();
         }

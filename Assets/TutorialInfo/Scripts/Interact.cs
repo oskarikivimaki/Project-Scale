@@ -25,7 +25,7 @@ public class Interact : MonoBehaviour
     {
         if (other.transform.tag == "Player" && Input.GetKey(KeyCode.E) && !opened)
         {
-            opened = true;
+            
             string[] playerItems = other.GetComponent<PlayerController>().items;
             if (CheckItems(playerItems))
             {
@@ -34,6 +34,7 @@ public class Interact : MonoBehaviour
                     animator.SetBool("Interact", true);
                     if (isEnding)
                     {
+                        opened = true;
                         StartCoroutine(Ending());
                     }
                 }
@@ -46,6 +47,7 @@ public class Interact : MonoBehaviour
             else
             {
                 print("You dont have the right item");
+                
             }
         }
     }
