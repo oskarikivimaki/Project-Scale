@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float health;
     [SerializeField]
     public bool alive;
+    public bool canPlay;
 
 
 
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         health = 100;
         alive = true;
+        canPlay = false;
         _animator = GetComponentInChildren<Animator>();
         _speed = _speedBIG;
         _jumpForce = _jumpForceBIG;
@@ -48,30 +50,42 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        float vel = _rb.velocity.magnitude;
-        WalkAnimation(vel);
-        if (Input.GetMouseButtonDown(0))
+        if(alive)
         {
-            Punch();
+            if(canPlay)
+            {
+                float vel = _rb.velocity.magnitude;
+                WalkAnimation(vel);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Punch();
+                }
+            }
+            
         }
+        
     }
 
     void FixedUpdate()
     {
         if (alive)
         {
-            isGrounded = Physics.CheckSphere(_groundCheck.position, checkRadius, isGround);
-
-            var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
-            vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
-            vel.y = _rb.velocity.y;
-            _rb.velocity = vel;
-            
-
-            if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+            if (canPlay)
             {
-                _rb.AddForce(Vector3.up * _jumpForce);
+                isGrounded = Physics.CheckSphere(_groundCheck.position, checkRadius, isGround);
+
+                var vel = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _speed;
+                vel = Quaternion.AngleAxis(_camerTransform.rotation.eulerAngles.y, Vector3.up) * vel;
+                vel.y = _rb.velocity.y;
+                _rb.velocity = vel;
+
+
+                if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+                {
+                    _rb.AddForce(Vector3.up * _jumpForce);
+                }
             }
+            
 
             
         }
@@ -102,6 +116,9 @@ public class PlayerController : MonoBehaviour
     //{
     //    isGrounded = false;
     //}
+
+    public void EnablePlay() { canPlay = true; }
+    public void DisablePlay() { canPlay = false; }
 
     public void Respawn()
     {
